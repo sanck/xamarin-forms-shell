@@ -16,6 +16,12 @@ namespace ThePhoto.ViewModels
         {
             SelectedItemCommand = new Command(async (args) =>
             {
+                var item =
+                args as CollectionModel;
+                if(item != null)
+                {
+                    await Shell.Current.GoToAsync($"featureDetail?collectionId={item.CollectionId}");
+                }
                 
             });
         }

@@ -38,6 +38,7 @@ namespace ThePhoto
         private void RegisterRoutes()
         {
             //Routing.RegisterRoute("//chicken/featuredView", typeof(FeaturedView));
+            Routing.RegisterRoute("featureDetail", typeof(FeaturedDetailView));
         }
 
         protected override void OnStart()

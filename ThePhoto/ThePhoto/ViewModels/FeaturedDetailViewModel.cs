@@ -14,8 +14,9 @@ namespace ThePhoto.ViewModels
 
         public ObservableCollection<Photo> PhotosList { get; set; } =
             new ObservableCollection<Photo>();
-        public FeaturedDetailViewModel()
+        public FeaturedDetailViewModel(string _collectionId)
         {
+            this.collectionId = _collectionId;
             Task.Run(async () =>
             {
                 await GetPhotos();
