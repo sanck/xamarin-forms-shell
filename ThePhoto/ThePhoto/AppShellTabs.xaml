@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:ThePhoto.Views"
+             xmlns:food="clr-namespace:ThePhoto.Views.Food"
+             xmlns:places="clr-namespace:ThePhoto.Views.Places"
+             x:Class="ThePhoto.AppShellTabs"
+             >
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle"
+                   TargetType="Element">
+                <Setter Property="Shell.TabBarBackgroundColor"
+                        Value="#2D2D2D"/>
+                <Setter Property="Shell.TabBarTitleColor"
+                        Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor"
+                        Value="#B4FFFFFF"/>
+            </Style>
+            
+            <Style TargetType="TabBar"
+                   BasedOn="{StaticResource BaseStyle}"/>
+
+            <Style x:Key="FoodStyle"
+                   TargetType="Element"
+                   BasedOn="{StaticResource BaseStyle}">
+                <Setter Property="Shell.TabBarBackgroundColor"
+                        Value="DarkRed"/>
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+    
+    <TabBar>
+        <Tab Title="Random"
+             Icon="random.png">
+            <ShellContent>
+                <views:RandomPhotoView/>
+            </ShellContent>
+        </Tab>
+        <Tab Title="Food"
+             Icon="food.png"
+             Style="{StaticResource FoodStyle}"
+             >
+            <ShellContent Title="Chicken"
+                          Icon="chicken.png"
+                          x:Name="chikenPage"
+                          >
+                <food:ChickenMeatView/>
+            </ShellContent>
+            <ShellContent Title="Beef"
+                          Icon="beef.png">
+                <food:BeefMeatView/>
+            </ShellContent>
+            <ShellContent Title="Pasta"
+                          Icon="pasta.png">
+                <food:PastaView/>
+            </ShellContent>
+            <ShellContent Title="Cake"
+                          Icon="cake.png">
+                <food:CakeView/>
+            </ShellContent>
+            <ShellContent Title="Cookies"
+                          Icon="cookies.png">
+                <food:CookiesView/>
+            </ShellContent>
+        </Tab>
+        <Tab Title="Places"
+             Icon="places.png">
+
+            <ShellContent Title="Chiapas"
+                          Icon="chiapas.png">
+                <places:ChiapasView/>
+            </ShellContent>
+            <ShellContent Title="Cancún"
+                          Icon="cancun.png">
+                <places:CancunView/>
+            </ShellContent>
+            <ShellContent Title="Paris"
+                          Icon="paris.png">
+                <places:ParisView/>
+            </ShellContent>
+            <ShellContent Title="Cairo"
+                          Icon="cairo.png">
+                <places:CairoView/>
+            </ShellContent>
+
+        </Tab>
+    </TabBar>
+</Shell>

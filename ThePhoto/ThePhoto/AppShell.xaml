@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:food="clr-namespace:ThePhoto.Views.Food"
+             xmlns:views="clr-namespace:ThePhoto.Views"
+             xmlns:places="clr-namespace:ThePhoto.Views.Places"
+             x:Class="ThePhoto.AppShell"
+             FlyoutIcon="menu.png"
+             FlyoutHeaderBehavior="CollapseOnScroll"
+             Shell.FlyoutBehavior="Flyout" 
+             BackgroundColor="#33333D"
+             DisabledColor="#B4FFFFFF"
+             ForegroundColor="White"
+             TitleColor="White"
+             UnselectedColor="#95FFFFFF">
+            <!--CurrentItem="{x:Reference chikenPage}" NOTE: Init Page --> 
+
+
+    <Shell.Resources> 
+        <Style x:Key="BaseStyle"
+                TargetType="Element">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="#33333D"/>
+            <Setter Property="Shell.DisabledColor"
+                    Value="#B4FFFFFF"/>
+            <Setter Property="Shell.ForegroundColor"
+                    Value="White"/>
+            <Setter Property="Shell.TitleColor"
+                    Value="White"/>
+            <Setter Property="Shell.UnselectedColor"
+                    Value="#95FFFFFF"/>
+        </Style>
+
+        <Style TargetType="FlyoutItem"
+                BasedOn="{StaticResource BaseStyle}"/>
+
+        <Style x:Key="FoodStyle"
+                TargetType="Element"
+                BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="DarkRed"/>
+        </Style>
+        <Style x:Key="PastaStyle"
+                TargetType="Element"
+                BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="Gold"/>
+            <!--<Setter Property="Shell.NavBarIsVisible" 
+                    Value="False"/>
+            <Setter Property="Shell.TabBarIsVisible" 
+                    Value="False"/>-->
+        </Style>
+    </Shell.Resources>
+
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="Black">
+                <Image Aspect="AspectFill"
+                       Source="header.jpg"
+                       Opacity="0.6"/>
+                <Label Text="The Photo"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       FontSize="Large"
+                       Style="{StaticResource RobotoBold}"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="0.8*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding FlyoutIcon}"
+                       Margin="5"
+                       HeightRequest="45"
+                       />
+                <Label Grid.Column="1"
+                       Text="{Binding Title}"
+                       FontAttributes="Italic"
+                       VerticalTextAlignment="Center"
+                       />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="0.8*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding Icon}"
+                       Margin="5"
+                       HeightRequest="45"
+                       />
+                <Label Grid.Column="1"
+                       Text="{Binding Title}"
+                       FontAttributes="Italic"
+                       VerticalTextAlignment="Center"
+                       />
+            </Grid>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+    <FlyoutItem Title="Random Photo"
+                Icon="random.png"
+                >
+        <Tab>
+            <ShellContent Route="random" >
+                <views:RandomPhotoView/>
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Featured"
+                Icon="featured.png"
+                Route="featured">
+        <Tab Route="featuredtab">
+            <ShellContent Title="Featured"
+                          Route="featuredPage">
+                <views:FeaturedView></views:FeaturedView>
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Food"
+                Icon="food.png"
+                FlyoutDisplayOptions="AsSingleItem"
+                Style="{StaticResource FoodStyle}"
+                Route="food"
+                >
+        <Tab Title="Meat" 
+             Icon="meat.png" 
+             Route="meat"
+             >
+            <ShellContent Title="Chicken"
+                          Icon="chicken.png"
+                          x:Name="chikenPage"
+                          Route="chicken"
+                          >
+                <food:ChickenMeatView/>
+            </ShellContent>
+            <ShellContent Title="Beef"
+                          Icon="beef.png"
+                          Route="beef"
+                          >
+                <food:BeefMeatView/>
+            </ShellContent>
+        </Tab>
+        <Tab Title="Pasta"
+             Icon="pasta.png"
+             Style="{StaticResource PastaStyle}"
+             >
+            <ShellContent Route="pasta">
+                <food:PastaView/>
+            </ShellContent>
+        </Tab>
+        <Tab Title="Dessert"
+             Icon="dessert.png"
+             Route="desert"
+             >
+            <ShellContent Title="Cake"
+                          Icon="cake.png"
+                          Route="cake">
+                <food:CakeView/>
+            </ShellContent>
+            <ShellContent Title="Cookies"
+                          Icon="cookies.png"
+                          Route="cookies">
+                <food:CookiesView/>
+            </ShellContent>
+        </Tab> 
+    </FlyoutItem>
+
+    <FlyoutItem Title="Places"
+                Icon="places.png"
+                Route="places">
+        <Tab Title="México"
+             Icon="mexico.png"
+             Route="mexico">
+            <ShellContent Title="Chiapas"
+                          Icon="chiapas.png"
+                          Route="chiapas">
+                <places:ChiapasView/>
+            </ShellContent>
+            <ShellContent Title="Cancún"
+                          Icon="cancun.png"
+                          Route="cancun">
+                <places:CancunView/>
+            </ShellContent>
+        </Tab>
+        <Tab Title="France"
+             Icon="france.png">
+            <ShellContent Route="france">
+                <places:ParisView/>
+            </ShellContent>
+        </Tab>
+        <Tab Title="Egypt"
+             Icon="egypt.png">
+            <ShellContent Route="egypt">
+                <places:CairoView/>
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+
+    <MenuItem Text="I'm feeling lucky"
+              IconImageSource="lucky.png"
+              Command="{Binding LuckyCommand}"/>
+
+    <MenuItem Text="Help"
+              IconImageSource="help.png"
+              Command="{Binding HelpCommand}">
+        <!--definir template directamente-->
+        <!--<Shell.MenuItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding Icon}"
+                       Margin="5"
+                       HeightRequest="45"
+                       />
+                    <Label Grid.Column="1"
+                       Text="{Binding Title}"
+                       FontAttributes="Italic"
+                       VerticalTextAlignment="Center"
+                       />
+                </Grid>
+            </DataTemplate>
+        </Shell.MenuItemTemplate>-->
+    </MenuItem>
+
+</Shell>
