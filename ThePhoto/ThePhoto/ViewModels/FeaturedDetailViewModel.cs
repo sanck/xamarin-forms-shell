@@ -12,6 +12,11 @@ namespace ThePhoto.ViewModels
     {
         private string collectionId = "4807737";
 
+        public ICommand BackCommand => new Command(async() =>
+        {
+            await Shell.Current.DisplayAlert("Back pressed", "Back pressed", "Ok");
+        });
+
         public ObservableCollection<Photo> PhotosList { get; set; } =
             new ObservableCollection<Photo>();
         public FeaturedDetailViewModel(string _collectionId)
