@@ -12,8 +12,9 @@ namespace ThePhoto.ViewModels
 
         private string _collectionId = "4807737";
 
-        public SearchViewModel()
+        public SearchViewModel(string collectionId)
         {
+            _collectionId = collectionId;
             Task.Run(async () =>
             {
                 await GetPhotos();

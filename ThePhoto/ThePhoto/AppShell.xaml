@@ -210,6 +210,16 @@
         </Tab>
     </FlyoutItem>
 
+    <FlyoutItem Title="Search"
+                Icon="search.png"
+                Route="search">
+        <Tab Route="searchTab">
+            <ShellContent Route="searchPage">
+                <views:SearchView/>
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+
     <MenuItem Text="I'm feeling lucky"
               IconImageSource="lucky.png"
               Command="{Binding LuckyCommand}"/>

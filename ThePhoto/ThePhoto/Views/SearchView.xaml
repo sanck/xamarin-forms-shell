@@ -4,6 +4,46 @@
              xmlns:search="clr-namespace:ThePhoto.Search"
              x:Class="ThePhoto.Views.SearchView">
 
+    <Shell.SearchHandler>
+        <search:PhotoSearchHandler Placeholder="Choose a topic"
+                                   ShowsResults="True"
+                                   DisplayMemberName="Title"
+                                   SearchBoxVisibility="Collapsible"
+                                   x:Name="searchBox"
+                                   BackgroundColor="#78a1bb"
+                                   CancelButtonColor="#9c528b"
+                                   PlaceholderColor="#ebf5ee"
+                                   TextColor="White"
+                                   >
+            <!--Keyboard="Numeric"-->
+            <SearchHandler.Keyboard>
+                <Keyboard x:FactoryMethod="Create">
+                    <x:Arguments>
+                        <KeyboardFlags>
+                            CapitalizeCharacter
+                        </KeyboardFlags>
+                    </x:Arguments>
+                </Keyboard>
+            </SearchHandler.Keyboard>
+            <search:PhotoSearchHandler.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.15*"/>
+                            <ColumnDefinition Width="0.85*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Url}"
+                               Aspect="AspectFill"
+                               HeightRequest="40"
+                               WidthRequest="40"/>
+                        <Label Grid.Column="1"
+                               Text="{Binding Title}"
+                               FontAttributes="Bold"/>
+                    </Grid>
+                </DataTemplate>
+            </search:PhotoSearchHandler.ItemTemplate>
+        </search:PhotoSearchHandler>
+    </Shell.SearchHandler>
 
     <ListView ItemsSource="{Binding PhotosList}"
               RowHeight="250">
